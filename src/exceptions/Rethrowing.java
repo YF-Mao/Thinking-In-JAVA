@@ -20,6 +20,8 @@ public class Rethrowing {
             //TODO 1.原来异常发生点的信息会丢失，变成新的异常发生地了，
             //即在下一个异常堆栈打印的时候只会打印到这里
             throw (Exception) e.fillInStackTrace();
+            //throw new RuntimeException();
+            //throw new RuntimeException(e);
         }
     }
 

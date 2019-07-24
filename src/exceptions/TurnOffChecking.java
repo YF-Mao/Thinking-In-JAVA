@@ -51,6 +51,7 @@ class WrapCheckedException {
             }
         } catch (Exception e) {
             //TODO 5.使用RuntimeException可以将其他异常包装进去，通过getCause()来捕获这里抛出来的异常
+            //但这里无法更改message，如果通过initCause()则可以自定义message
             throw new RuntimeException(e);
         }
     }
