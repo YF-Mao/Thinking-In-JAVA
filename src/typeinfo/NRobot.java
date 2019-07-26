@@ -24,7 +24,7 @@ public class NRobot {
     }
 
     public static void main(String[] args) {
-        //TODO 6.模拟对象和桩的概念理解
+        //TODO 7.模拟对象和桩的概念理解
         Robot[] bots = {new SnowRemovalRobot("YF.Mao"), newNullRobot(SnowRemovalRobot.class)
                 , newNullRobot(NullRobotProxyHandler.NRobot.class)};
         for (Robot robot : bots) {
