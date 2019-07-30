@@ -16,12 +16,20 @@ public class GenericMethods {
      * 1.只要你能做到，尽量使用泛型方法，如果可以取代整个类泛型化，就应该只使用泛型方法
      * 2.static方法需要使用泛型能力，就必须使其成为泛型方法
      *
+     * <?> 表示无界通配符
+     * 1.虽然编译器很少关心使用的是原生类型还是无界通配符，但是无界通配符声明了这里我是要用泛型来编写代码
+     * ，可以将运行时错误转移到编译错误上去 示例：UnboundedWildcards1
+     * 2.list 和 list<?>
+     *
+     *
      * super 表示下界，即表示T及其父类
-     * extends 表示上届，即表示T及其子类
+     * extends 表示上界，即表示T及其子类
      * PECS原则
      * 如果要从集合中读取类型T的数据，并且不能写入，可以使用 ? extends 通配符；(Producer Extends)
      * 如果要从集合中写入类型T的数据，并且不需要读取，可以使用 ? super 通配符；(Consumer Super)
      * 如果既要存又要取，那么就不要使用任何通配符。
+     *
+     * 捕获转换只有在这样的情况下可以工作：即在方法内部，你需要使用确切的类型，
      */
     public <T> void f(T x) {
         System.out.println(x.getClass().getName());
