@@ -1,4 +1,4 @@
-package typeinfo;
+package typeinfo.pets;
 
 /**
  * @description:

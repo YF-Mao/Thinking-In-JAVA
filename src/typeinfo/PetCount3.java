@@ -1,5 +1,7 @@
 package typeinfo;
 
+import typeinfo.pets.Pet;
+
 import java.util.LinkedHashMap;
 
 /**
