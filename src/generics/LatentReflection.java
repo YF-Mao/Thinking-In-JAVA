@@ -1,0 +1,91 @@
+package generics;
+
+import typeinfo.Operation;
+import typeinfo.Robot;
+
+import java.lang.reflect.Method;
+import java.util.List;
+
+/**
+ * @description:
+ * @author: YF.Mao
+ * @create: 2019/7/31
+ **/
+public class LatentReflection {
+    public static void main(String[] args) {
+        CommunicateReflectively.perform(new SmartDog());
+        CommunicateReflectively.perform(new Robot() {
+            @Override
+            public String name() {
+                return null;
+            }
+
+            @Override
+            public String model() {
+                return null;
+            }
+
+            @Override
+            public List<Operation> operations() {
+                return null;
+            }
+        });
+        CommunicateReflectively.perform(new Mime());
+    }
+}
+
+class Mime {
+    public void walkAgainstTheWind() {
+
+    }
+
+    public void sit() {
+        System.out.println("Pretending to sit");
+    }
+
+    public void pushInvisibleWalls() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Mime";
+    }
+}
+
+class SmartDog {
+    public void speak() {
+        System.out.println("Woof");
+    }
+
+    public void sit() {
+        System.out.println("Sitting");
+    }
+
+    public void reproduce() {
+
+    }
+}
+
+class CommunicateReflectively {
+    public static void perform(Object speaker) {
+        Class<?> spkr = speaker.getClass();
+        try {
+            try {
+                Method speak = spkr.getMethod("speak");
+                speak.invoke(speaker);
+            } catch (NoSuchMethodException e) {
+                System.out.println(speaker + " cannot speak");
+            }
+
+            try {
+                Method sit = spkr.getMethod("sit");
+                sit.invoke(speaker);
+            } catch (NoSuchMethodException e) {
+                System.out.println(speaker + " cannot sit");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(speaker.toString(), e);
+        }
+    }
+}
