@@ -1,5 +1,7 @@
 package arrays;
 
+import java.util.Comparator;
+
 /**
  * @description:
  * @author: YF.Mao
@@ -14,6 +16,11 @@ public class ParameterizedArrayType {
 
         ints2 = MethodParameter.f(ints);
         doubles = MethodParameter.f(doubles);
+
+        Integer[] a = new Integer[]{1};
+        //数组不会进行自动拆装箱
+
+        //int[] a1 =  a;
     }
 }
 
