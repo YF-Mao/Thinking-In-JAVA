@@ -26,6 +26,7 @@ public class Groundhog2 extends Groundhog {
      */
     @Override
     public boolean equals(Object obj) {
+        //instanceof 已经检查了obj是否为null
         return obj instanceof Groundhog2 && (number == ((Groundhog2) obj).number);
     }
 }
