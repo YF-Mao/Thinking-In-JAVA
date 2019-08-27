@@ -14,3 +14,5 @@ public abstract class Test<C> {
 
     abstract int test(C container, TestParam tp);
 }
+
+

@@ -18,7 +18,7 @@ public class GenericMethods {
      *
      * <?> 表示无界通配符
      * 1.虽然编译器很少关心使用的是原生类型还是无界通配符，但是无界通配符声明了这里我是要用泛型来编写代码
-     * ，可以将运行时错误转移到编译错误上去 示例：UnboundedWildcards1
+     * ，可以将运行时错误转移到编译错误上去 示例：UnboundedWildcards1.class Wildcards.class
      * 2.list 和 list<?>
      *
      *
