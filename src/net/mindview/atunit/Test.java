@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
  * 没有元素的注解称为标记注解
  *
  */
-@Target(ElementType.METHOD)
+@Target({ElementType.METHOD,ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Test {
 }
