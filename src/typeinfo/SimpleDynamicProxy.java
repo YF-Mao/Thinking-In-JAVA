@@ -3,6 +3,7 @@ package typeinfo;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
+import java.util.UUID;
 
 /**
  * @description:
@@ -16,11 +17,15 @@ public class SimpleDynamicProxy {
     }
 
     public static void main(String[] args) {
+        UUID u = UUID.randomUUID();
+        System.out.println(u.toString());
         RealObject real = new RealObject();
         consumer(real);
         /**
          * 使用newProxyInstance()的时候，必须为该代理实现的接口列表的Class
          * 如new Class[]{Interface.class}
+         *
+         * invoke 中的
          *
          */
         Interface proxy = (Interface) Proxy.newProxyInstance(

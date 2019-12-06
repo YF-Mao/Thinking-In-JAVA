@@ -6,6 +6,7 @@ package containers;
  * @create: 2019/8/25
  **/
 public class AssociativeArray<K, V> {
+
     private Object[][] pairs;
     private int index;
 

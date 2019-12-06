@@ -20,7 +20,7 @@ public class IntegerMatch {
         System.out.println("+911".matches("(-|\\+)?\\d+"));
 
         /**
-         * 如果有&&，则是取前后的交集，没有则是取并集
+         * 如果有&&，则是取前后的并集，没有则是取交集
          *
          */
         System.out.println("i".matches("[h[hij]]"));

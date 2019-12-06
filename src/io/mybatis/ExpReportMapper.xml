@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="china.hand.aurora.mapper.ExpReportMapper">
+    <select id="queryExpRepHeaderInfo" resultType="china.hand.aurora.entity.exp.ExpReportHeaderInfo">
+        SELECT
+            e.exp_report_header_id,
+            e.exp_report_number,
+            e.report_status,
+            e.unit_id "unitId"
+        FROM
+            exp_report_headers e
+        ORDER BY
+            e.exp_report_header_id DESC
+    </select>
+
+    <select id="queryUnitEnable" resultType="java.lang.String">
+        SELECT
+            e.enabled_flag
+        FROM
+            exp_org_unit e
+        WHERE
+            e.unit_id = #{unitId}
+    </select>
+
+    <!--一对多和多对一的示例-->
+    <select id="queryExpReport" resultMap="expReportInfo">
+        SELECT
+            e.exp_report_header_id,
+            e.exp_report_number,
+            e.report_status,
+            e.unit_id "unitId",
+            erl.exp_report_line_id,
+            erl.line_number
+        FROM
+            exp_report_headers e,
+            exp_report_lines erl
+            where e.exp_report_header_id = erl.exp_report_header_id
+        ORDER BY
+            e.exp_report_header_id DESC
+    </select>
+
+    <resultMap id="expReportInfo" type="china.hand.aurora.entity.ExpReportInfo">
+        <id column="exp_report_header_id" javaType="java.lang.Integer"/>
+        <association property="head" javaType="china.hand.aurora.entity.exp.ExpReportHeaderInfo">
+            <id column="exp_report_header_id" property="exp_report_header_id"/>
+            <result column="exp_report_number" property="exp_report_number"/>
+            <result column="report_status" property="report_status"/>
+            <result column="unitId" property="unitId"/>
+        </association>
+        <collection property="documentLines" ofType="china.hand.aurora.entity.ExpReportLineInfo">
+            <result column="exp_report_header_id" property="exp_report_header_id"/>
+            <result column="exp_report_line_id" property="exp_report_line_id"/>
+            <result column="line_number" property="line_number"/>
+        </collection>
+    </resultMap>
+
+    <!--select映射，有可能会引起N+1查询-->
+    <select id="queryExpInfoCo" resultMap="collectionResultMap">
+        SELECT
+            e.exp_report_header_id,
+            e.exp_report_number,
+            e.report_status,
+            e.unit_id "unitId"
+        FROM
+            exp_report_headers e
+        ORDER BY
+            e.exp_report_header_id DESC
+    </select>
+
+    <resultMap id="collectionResultMap" type="china.hand.aurora.entity.ExpReportInfo">
+        <association property="head" javaType="china.hand.aurora.entity.exp.ExpReportHeaderInfo">
+            <id column="exp_report_header_id" property="exp_report_header_id"/>
+            <result column="exp_report_number" property="exp_report_number"/>
+            <result column="report_status" property="report_status"/>
+            <result column="unitId" property="unitId"/>
+        </association>
+        <collection column="{exp_report_header_id = exp_report_header_id}" property="documentLines"
+                    select="queryCollection"/>
+    </resultMap>
+
+    <select id="queryCollection" parameterType="java.util.Map" resultType="china.hand.aurora.entity.ExpReportLineInfo">
+        SELECT
+            erl.exp_report_header_id,
+            erl.exp_report_line_id,
+            erl.line_number
+        FROM
+            exp_report_lines erl
+      where erl.exp_report_header_id = #{exp_report_header_id, jdbcType=DECIMAL}
+        ORDER BY
+            erl.exp_report_line_id DESC
+    </select>
+
+    <select id="queryTest" resultMap="collectionResultMap">
+        SELECT
+            e.exp_report_header_id,
+            e.exp_report_number,
+            e.report_status,
+            e.unit_id "unitId"
+        FROM
+            exp_report_headers e
+        ORDER BY
+            e.exp_report_header_id DESC
+    </select>
+</mapper>
