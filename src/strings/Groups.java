@@ -1,5 +1,6 @@
 package strings;
 
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +24,7 @@ public class Groups {
      */
     public static Pattern pattern = Pattern.compile("(?m)(\\S+)\\s+((\\S+)\\s+(\\S+))$");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws UnsupportedEncodingException {
         Matcher m = pattern.matcher(POEM);
         //while (m.find()) {
         //    for (int j = 0; j <= m.groupCount(); j++) {

@@ -1,6 +1,8 @@
 package generics;
 
 import java.awt.*;
+import java.lang.reflect.Type;
+import java.lang.reflect.TypeVariable;
 
 /**
  * @description:
@@ -20,6 +22,10 @@ interface HasColor {
     java.awt.Color getColor();
 }
 
+class Testele<T extends HasColor>{
+
+}
+
 class Colored<T extends HasColor> {
     T item;
 
@@ -33,6 +39,20 @@ class Colored<T extends HasColor> {
 
     java.awt.Color color() {
         return item.getColor();
+    }
+
+    public static void main(String[] args) {
+        TypeVariable<Class<Colored>>[] typeVariable = Colored.class.getTypeParameters();
+        for (TypeVariable<Class<Colored>> type : typeVariable) {
+            System.out.println(type.getName());
+
+            Type[] types = type.getBounds();
+            for (Type t : types) {
+                System.out.println(t);
+            }
+
+            System.out.println(type.getGenericDeclaration());
+        }
     }
 }
 

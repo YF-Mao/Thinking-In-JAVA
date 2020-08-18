@@ -1,5 +1,7 @@
 package generics;
 
+import java.util.Arrays;
+
 /**
  * @description:
  * @author: YF.Mao
@@ -7,6 +9,7 @@ package generics;
  **/
 public class Holder<T> {
     private T value;
+    private T[] values;
 
     public Holder() {
 
@@ -14,6 +17,7 @@ public class Holder<T> {
 
     public Holder(T value) {
         this.value = value;
+        values = (T[]) Arrays.asList(value).toArray();
     }
 
     public void set(T value) {
@@ -22,6 +26,10 @@ public class Holder<T> {
 
     public T get() {
         return value;
+    }
+
+    public T[] getArrays() {
+        return values;
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.Arrays;
 public class CaptureCaonversion {
     static <T> void f1(Holder<T> holder) {
         T t = holder.get();
+        T[] ts = holder.getArrays();
         System.out.println(t.getClass().getSimpleName());
         System.out.println(Arrays.toString(holder.getClass().getTypeParameters()));
     }
